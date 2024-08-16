@@ -12,9 +12,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - run: pip install poetry && poetry env use ${{ matrix.python-version }}
+      - run: poetry install
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - run: pip install poetry && poetry env use ${{ matrix.python-version }} && poetry install
       - run: npm ci
       - run: make test
