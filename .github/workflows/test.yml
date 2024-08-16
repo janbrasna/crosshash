@@ -15,5 +15,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - run: make install
+      - run: pipx install poetry && poetry install
+      - run: npm ci
       - run: make test
